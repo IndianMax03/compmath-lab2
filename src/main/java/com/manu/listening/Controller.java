@@ -38,8 +38,7 @@ public class Controller {
     @PostMapping("equations/solveNonLinearSystem")
     @ResponseBody
     public ObjectNode solveSystem(@RequestBody SystemData systemData) {
-        return new ObjectMapper().createObjectNode();
-//        return "Сервер получил данные: " + systemData.toString();
+        return systemService.analyze(systemData);
     }
 
 }

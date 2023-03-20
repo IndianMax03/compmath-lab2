@@ -7,29 +7,26 @@ submitButton.addEventListener("click", (evt) => {
 
     evt.preventDefault();
 
-    let aStr = $('#a').val().replaceAll(" ", "");
-    let bStr = $('#b').val().replaceAll(" ", "");
     let xStr = $('#x').val().replaceAll(" ", "");
+    let yStr = $('#y').val().replaceAll(" ", "");
     let epsStr = $('#eps').val().replaceAll(" ", "");
 
     let baseballSystem = document.getElementById("baseballSystem").checked;
     let tennisSystem = document.getElementById("tennisSystem").checked;
     let selectedMethod = document.querySelector("#method").value;
 
-    let a = aStr !== "" ? Number(aStr.replaceAll(",", ".")) : NaN;
-    let b = bStr !== "" ? Number(bStr.replaceAll(",", ".")) : NaN;
     let x = xStr !== "" ? Number(xStr.replaceAll(",", ".")) : NaN;
+    let y = yStr !== "" ? Number(yStr.replaceAll(",", ".")) : NaN;
     let eps = epsStr !== "" ? Number(epsStr.replaceAll(",", ".")) : NaN;
 
     let isValid = true;
 
-    if (isNaN(a) || isNaN(b) || isNaN(x) || isNaN(eps)) {
+    if (isNaN(x)|| isNaN(y) || isNaN(eps)) {
         isValid = false;
-        console.log(a, b, eps);
     }
 
     if (isValid) {
-        if (!(a < b) || x > b || x < a || eps < 0) {
+        if (eps < 0) {
             isValid = false;
         }
     }
@@ -46,9 +43,8 @@ submitButton.addEventListener("click", (evt) => {
     // Отправка на сервер с учетом выбранного графика.
 
     let data = {
-        a: aStr.replaceAll(",", "."),
-        b: bStr.replaceAll(",", "."),
         x: xStr.replaceAll(",", "."),
+        y: yStr.replaceAll(",", "."),
         eps: epsStr.replaceAll(",", "."),
         graphic: baseballSystem ? "baseball" : tennisSystem ? "tennis" : null,
         method: selectedMethod,
@@ -63,16 +59,22 @@ submitButton.addEventListener("click", (evt) => {
         contentType: "application/json",
         dataType: "json",
         success: function (result) {
-            answerToUser.value = result;
-            // if (result.error !== undefined) {
-            //     answerToUser.value = result.error;
-            // } else {
-            //     if (result.x === undefined || result['f(x)'] === undefined || result.iterations === undefined) {
-            //         answerToUser.value = "Сервер ответил неожиданными данными..."
-            //         return;
-            //     }
-            //     answerToUser.value = `x = ${result.x}\nf(x) = ${result['f(x)']}\niterations = ${result.iterations}`;
-            // }
+            // console.log(result);
+            if (result.error !== undefined) {
+                answerToUser.value = result.error;
+            } else {
+                if (
+                    result.answerX === undefined ||
+                    result.answerY === undefined ||
+                    result.approximationX === undefined ||
+                    result.approximationY === undefined ||
+                    result.iterations === undefined
+                ) {
+                    answerToUser.value = "Сервер ответил неожиданными данными..."
+                    return;
+                }
+                answerToUser.value = `(x; y):\n(${result.answerX}; ${result.answerY})\n(vX; vY):\n(${result.approximationX}; ${result.approximationY})\niterations = ${result.iterations}`;
+            }
         },
         error: function (xhr, status, error) {
             answerToUser.innerText = "Упс! Ошибочка. " + error;

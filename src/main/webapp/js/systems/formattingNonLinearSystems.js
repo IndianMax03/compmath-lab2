@@ -1,13 +1,10 @@
 const baseball = document.getElementById("baseball");
 const tennis = document.getElementById("tennis");
-const a = document.getElementById("aLabel");
-const b = document.getElementById("bLabel");
 const x = document.getElementById("xLabel");
+const y = document.getElementById("yLabel");
 const eps = document.getElementById("epsLabel");
 
-const aLessThanB = document.getElementById("aLessThanB");
 const epsHigherThanZero = document.getElementById("epsHigherThanZero");
-const xBetweenAB = document.getElementById("xBetweenAB");
 
 katex.render(
     "\\begin{cases}\n" +
@@ -25,28 +22,16 @@ katex.render(
     tennis
 );
 
-katex.render("a:",
-    a
-)
-
-katex.render("b:",
-    b
-)
-
 katex.render("x_0:",
     x
 )
 
+katex.render("y_0:",
+    y
+)
+
 katex.render("\\epsilon:",
     eps
-)
-
-katex.render("a < b",
-    aLessThanB
-)
-
-katex.render("a \\leq x_0 \\leq b",
-    xBetweenAB
 )
 
 katex.render("\\epsilon \\geq 0",

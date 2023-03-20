@@ -60,21 +60,15 @@
                     <div class="box is-square is-fullheight">
                         <span class="is-size-5">Введите данные:</span>
                         <div class="field">
-                            <label class="label"><span id="aLabel"></span></label>
-                            <div class="control">
-                                <input id="a" class="input" type="text">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label class="label"><span id="bLabel"></span></label>
-                            <div class="control">
-                                <input id="b" class="input" type="text">
-                            </div>
-                        </div>
-                        <div class="field">
                             <label class="label"><span id="xLabel"></span></label>
                             <div class="control">
                                 <input id="x" class="input" type="text">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label"><span id="yLabel"></span></label>
+                            <div class="control">
+                                <input id="y" class="input" type="text">
                             </div>
                         </div>
                         <div class="field">
@@ -108,11 +102,7 @@
             <br>
             1. <span id="allIsNum">Данные - это числа</span>
             <br>
-            2. <span id="aLessThanB"></span>
-            <br>
-            3. <span id="xBetweenAB"></span>
-            <br>
-            4. <span id="epsHigherThanZero"></span>
+            2. <span id="epsHigherThanZero"></span>
         </div>
         <div class="column is-4 has-text-centered">
             <div class="box is-square is-fullheight">
@@ -137,7 +127,7 @@
                 <div>
                     <span class="is-size-5">Найденный корень:</span>
                 </div>
-                <div>
+                <div class="has-text-left">
                     <textarea id="foundedRoot" class="textarea my-6" rows="4" cols="40" readonly>Здесь будет найденный корень</textarea>
                 </div>
                 <div>

@@ -5,31 +5,24 @@ $('#dataFile').on('change', function handleFileSelect(event) {
     reader.onload = function (e) {
 
         const data = JSON.parse(e.target.result);
-        let aElement = $('#a');
-        let bElement = $('#b');
         let xElement = $('#x');
+        let yElement = $('#y');
         let epsElement = $('#eps');
 
-        let aStr = data.a.toString().replaceAll(" ", "");
-        let bStr = data.b.toString().replaceAll(" ", "");
         let xStr = data.x.toString().replaceAll(" ", "");
+        let yStr = data.y.toString().replaceAll(" ", "");
         let epsStr = data.eps.toString().replaceAll(" ", "");
 
-        let a = aStr !== "" ? Number(aStr.replaceAll(",", ".")) : NaN;
-        let b = bStr !== "" ? Number(bStr.replaceAll(",", ".")) : NaN;
-        let x = xStr !== "" ? Number(bStr.replaceAll(",", ".")) : NaN;
+        let x = xStr !== "" ? Number(xStr.replaceAll(",", ".")) : NaN;
+        let y = yStr !== "" ? Number(yStr.replaceAll(",", ".")) : NaN;
         let eps = epsStr !== "" ? Number(epsStr.replaceAll(",", ".")) : NaN;
-
-        if (!isNaN(a)) {
-            aElement.val(a);
-        }
-
-        if (!isNaN(b)) {
-            bElement.val(b);
-        }
 
         if (!isNaN(x)) {
             xElement.val(x);
+        }
+
+        if (!isNaN(y)) {
+            yElement.val(y);
         }
 
         if (!isNaN(eps)) {

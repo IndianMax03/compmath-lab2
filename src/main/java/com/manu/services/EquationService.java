@@ -16,11 +16,11 @@ public class EquationService {
             return node;
         }
         if (!data.setValidData()) {
-            node.put("error", "Сервер не может корректно обработать переданные данные");
+            node.put("error", "Сервер не может корректно обработать переданные данные.");
             return node;
         }
         if (!data.checkLog()) {
-            node.put("error", "В функцию логарифма не стоит передавать интервал, который может включать значения меньшие или равные нулю");
+            node.put("error", "В функцию логарифма не стоит передавать интервал, который может включать значения меньшие или равные нулю.");
             return node;
         }
         if (!data.analyzeInterval()) {
