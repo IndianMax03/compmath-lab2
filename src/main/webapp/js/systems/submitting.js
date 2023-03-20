@@ -29,7 +29,7 @@ submitButton.addEventListener("click", (evt) => {
     }
 
     if (isValid) {
-        if (!(a < b) || x > b || x < a) {
+        if (!(a < b) || x > b || x < a || eps < 0) {
             isValid = false;
         }
     }
@@ -63,7 +63,16 @@ submitButton.addEventListener("click", (evt) => {
         contentType: "application/json",
         dataType: "json",
         success: function (result) {
-            answerToUser.innerText = result;
+            answerToUser.value = result;
+            // if (result.error !== undefined) {
+            //     answerToUser.value = result.error;
+            // } else {
+            //     if (result.x === undefined || result['f(x)'] === undefined || result.iterations === undefined) {
+            //         answerToUser.value = "Сервер ответил неожиданными данными..."
+            //         return;
+            //     }
+            //     answerToUser.value = `x = ${result.x}\nf(x) = ${result['f(x)']}\niterations = ${result.iterations}`;
+            // }
         },
         error: function (xhr, status, error) {
             answerToUser.innerText = "Упс! Ошибочка. " + error;

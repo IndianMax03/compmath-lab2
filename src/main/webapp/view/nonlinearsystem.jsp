@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>СНУ</title>
     <link rel="stylesheet" href="<c:url value="/webjars/bulma/0.9.4/css/bulma.min.css" />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script>
@@ -101,6 +101,19 @@
                 </div>
             </div>
         </div>
+        <div id="submitHelper" class="notification is-danger has-text-left"
+             style="display: none; position: absolute">
+            <button id="notificationButton" class="delete"></button>
+            Произошла ошибка ввода данных. Убедитесь, что:
+            <br>
+            1. <span id="allIsNum">Данные - это числа</span>
+            <br>
+            2. <span id="aLessThanB"></span>
+            <br>
+            3. <span id="xBetweenAB"></span>
+            <br>
+            4. <span id="epsHigherThanZero"></span>
+        </div>
         <div class="column is-4 has-text-centered">
             <div class="box is-square is-fullheight">
                 <div>
@@ -116,17 +129,6 @@
                 <div class="mb-6">
                     <button id="submitButton" class="button is-info is-medium is-light">Найти корень!</button>
                 </div>
-            </div>
-            <div id="submitHelper" class="notification is-danger has-text-left"
-                 style="display: none; position: absolute">
-                <button id="notificationButton" class="delete"></button>
-                Произошла ошибка ввода данных. Убедитесь, что:
-                <br>
-                1. <span id="allIsNum">Данные - это числа</span>
-                <br>
-                2. <span id="aLessThanB"></span>
-                <br>
-                3. <span id="xBetweenAB"></span>
             </div>
         </div>
 

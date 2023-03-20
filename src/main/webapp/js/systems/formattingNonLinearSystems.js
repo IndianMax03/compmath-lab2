@@ -6,6 +6,7 @@ const x = document.getElementById("xLabel");
 const eps = document.getElementById("epsLabel");
 
 const aLessThanB = document.getElementById("aLessThanB");
+const epsHigherThanZero = document.getElementById("epsHigherThanZero");
 const xBetweenAB = document.getElementById("xBetweenAB");
 
 katex.render(
@@ -46,4 +47,8 @@ katex.render("a < b",
 
 katex.render("a \\leq x_0 \\leq b",
     xBetweenAB
+)
+
+katex.render("\\epsilon \\geq 0",
+    epsHigherThanZero
 )

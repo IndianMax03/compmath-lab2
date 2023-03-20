@@ -26,11 +26,10 @@ submitButton.addEventListener("click", (evt) => {
 
     if (isNaN(a) || isNaN(b) /*|| isNaN(x)*/ || isNaN(eps)) {
         isValid = false;
-        console.log(a, b, eps);
     }
 
     if (isValid) {
-        if (!(a < b) /*|| x > b || x < a*/) {
+        if (!(a < b) || eps < 0 /*|| x > b || x < a*/) {
             isValid = false;
         }
     }
@@ -63,7 +62,15 @@ submitButton.addEventListener("click", (evt) => {
         contentType: "application/json",
         dataType: "json",
         success: function (result) {
-            answerToUser.innerText = result;
+            if (result.error !== undefined) {
+                answerToUser.value = result.error;
+            } else {
+                if (result.x === undefined || result['f(x)'] === undefined || result.iterations === undefined) {
+                    answerToUser.value = "Сервер ответил неожиданными данными..."
+                    return;
+                }
+                answerToUser.value = `x = ${result.x}\nf(x) = ${result['f(x)']}\niterations = ${result.iterations}`;
+            }
         },
         error: function (xhr, status, error) {
             answerToUser.innerText = "Упс! Ошибочка. " + error;

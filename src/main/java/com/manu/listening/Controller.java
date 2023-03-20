@@ -1,9 +1,18 @@
 package com.manu.listening;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.manu.requestdata.EquationData;
+import com.manu.requestdata.SystemData;
+import com.manu.services.EquationService;
+import com.manu.services.SystemService;
 import org.springframework.web.bind.annotation.*;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+
+    EquationService equationService = new EquationService();
+    SystemService systemService = new SystemService();
 
     @GetMapping("/")
     public String homePage() {
@@ -22,14 +31,15 @@ public class Controller {
 
     @PostMapping("equations/solveNonLinear")
     @ResponseBody
-    public String solveEquation(@RequestBody EquationData equationData) {
-        return "Сервер получил данные: " + equationData.toString();
+    public ObjectNode solveEquation(@RequestBody EquationData equationData) {
+        return equationService.analyze(equationData);
     }
 
     @PostMapping("equations/solveNonLinearSystem")
     @ResponseBody
-    public String solveSystem(@RequestBody SystemData systemData) {
-        return "Сервер получил данные: " + systemData.toString();
+    public ObjectNode solveSystem(@RequestBody SystemData systemData) {
+        return new ObjectMapper().createObjectNode();
+//        return "Сервер получил данные: " + systemData.toString();
     }
 
 }
