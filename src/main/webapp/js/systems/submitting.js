@@ -21,7 +21,7 @@ submitButton.addEventListener("click", (evt) => {
 
     let isValid = true;
 
-    if (isNaN(x)|| isNaN(y) || isNaN(eps)) {
+    if (isNaN(x) || isNaN(y) || isNaN(eps)) {
         isValid = false;
     }
 
